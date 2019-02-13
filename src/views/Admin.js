@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
 
-import AdminTests from './../components/AdminTests';
+import AdminTests from './../components/test/AdminTests';
 
 
 
