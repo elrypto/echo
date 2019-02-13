@@ -4,16 +4,20 @@ import Backbone from 'backbone';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 import './bootstrap.min.css'
+import { Provider } from "react-redux";
+
 import App from './App';
 import Main from './views/Main';
 import LeaderBoard from './views/Leaderboard';
 import Admin from './views/Admin';
 import Follow from './views/Follow';
 import MyPortfolio from './views/MyPortfolio';
+import configureStore from './config/configureStore'
 
 
-
+const store = configureStore();
 let content = document.getElementById('root');
+
 
 const Router = Backbone.Router.extend({
     routes: {
@@ -25,37 +29,47 @@ const Router = Backbone.Router.extend({
     },
     index: function() {
       render(
+        <Provider store={store}>
           <App id="index" router={router}>
               <Main />
           </App>
+          </Provider>
         , content)
     },
     admin: function() {
       render(
+        <Provider store={store}>
           <App id="admin">
             <Admin />
           </App>
+        </Provider>
         , content)
       },
     leaderboard: function() {
       render(
+        <Provider store={store}>
           <App id="leaderboard">
             <LeaderBoard />
           </App>
+        </Provider>
         , content)
       },
       my_portfolio: function() {
         render(
+          <Provider store={store}>
             <App id="my_portfolio">
               <MyPortfolio />
             </App>
+          </Provider>
           , content)
         },
       follow: function() {
         render(
+          <Provider store={store}>
             <App id="follow">
               <Follow />
             </App>
+          </Provider>
           , content)
         }
   })

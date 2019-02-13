@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
-import Backend from './../components/Backend';
+
+import AdminTests from './../components/AdminTests';
 
 
 
@@ -15,7 +16,8 @@ class Admin extends Component {
         <div class="container">
           <h3>--Admin--</h3>
 
-          <Backend />
+         <AdminTests />
+
           <br/><br/>
         </div>
         <Footer />
