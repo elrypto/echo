@@ -12,6 +12,7 @@ import LeaderBoard from './views/Leaderboard';
 import Admin from './views/Admin';
 import Follow from './views/Follow';
 import MyPortfolio from './views/MyPortfolio';
+import Create from './views/Create';
 import configureStore from './config/configureStore'
 
 
@@ -26,6 +27,7 @@ const Router = Backbone.Router.extend({
       'follow' : 'follow',
       'admin' : 'admin',
       'my_portfolio' : 'my_portfolio',
+      'create' : 'create',
     },
     index: function() {
       render(
@@ -45,6 +47,15 @@ const Router = Backbone.Router.extend({
         </Provider>
         , content)
       },
+     create: function() {
+        render(
+          <Provider store={store}>
+            <App id="create">
+              <Create />
+            </App>
+          </Provider>
+          , content)
+        },
     leaderboard: function() {
       render(
         <Provider store={store}>

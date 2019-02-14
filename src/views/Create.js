@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import '@atlaskit/css-reset';
 import {DragDropContext} from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import {startInProgress} from './../../actions';
-import Column from './Column';
+import {startInProgress} from './../actions';
+import Column from './../components/portfolio/Column';
+import {TOKENS} from './../components/0x/tokens';
 
 
 const Container = styled.div`
@@ -14,45 +15,30 @@ const Container = styled.div`
 
 const initialData = {
     tasks : {
-      'task-1': {id: 'task-1', content: 'take out garbage'},
-      'task-2': {id: 'task-2', content: 'cook dinner'},
-      'task-3': {id: 'task-3', content: 'buy groceries'},
-      'task-4': {id: 'task-4', content: 'mow the lawn'}
+      'task-1': {id: 'task-1', symbol: TOKENS.ZRX.symbol, image: TOKENS.ZRX.image},
+      'task-2': {id: 'task-2', symbol: TOKENS.GNT.symbol, image: TOKENS.GNT.image},
+      'task-3': {id: 'task-3', symbol: TOKENS.WETH.symbol, image: TOKENS.WETH.image},
+      'task-4': {id: 'task-4', symbol: TOKENS.REP.symbol, image: TOKENS.REP.image},
+      'task-5': {id: 'task-5', symbol: TOKENS.MKR.symbol, image: TOKENS.MKR.image}
     },
     columns: {
       'column-1': {
         id: 'column-1',
-        title: 'To do',
-        taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
+        title: 'Tokens',
+        taskIds: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5']
       },
       'column-2': {
         id: 'column-2',
-        title: 'In progress',
-        taskIds: []
-      },
-      'column-3': {
-        id: 'column-3',
-        title: 'Done',
+        title: 'My Index',
         taskIds: []
       }
     },
-    columnOrder: ['column-1', 'column-2', 'column-3']
+    columnOrder: ['column-1', 'column-2']
 }
 
-class AdminTests extends Component {
+class Create extends Component {
   state = initialData;
 
-
-  handleTestInvokeAction = e => {
-    console.log("handleTestInvokeAction");
-    this.props.dispatch(startInProgress());
-  }
-
-  handleTestPropsSetFromAction = e => {
-    console.log("handleTestPropsSetFromAction");
-    const {inProgress} = this.props;
-    console.log(inProgress);
-  }
 
   onDragEnd = result => {
     const {destination, source, draggableId} = result;
@@ -118,13 +104,6 @@ class AdminTests extends Component {
     this.setState(newState);
   }
 
-  /*<div>
-             <button class="btn btn-secondary" onClick={this.handleTestInvokeAction}>
-            Test Action Invoke</button>
-
-            <button class="btn btn-secondary" onClick={this.handleTestPropsSetFromAction}>
-            Test Props State Set (Action)</button>
-        </div>*/
   
   render() {
     return( 
@@ -147,6 +126,6 @@ const mapStateToProps = state => {
   const {inProgress} = state;
   return {inProgress}
 }
-export default connect(mapStateToProps)(AdminTests)
+export default connect(mapStateToProps)(Create)
 
 
