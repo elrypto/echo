@@ -39,7 +39,7 @@ class AdminTests extends Component {
   }
 
   onDragEnd = result => {
-    //TODO: reorder code
+    //TODO: reorder codlumn
   }
 
   /*<div>
