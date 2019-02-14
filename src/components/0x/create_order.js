@@ -1,12 +1,9 @@
 import {
     assetDataUtils,
     BigNumber,
-    ContractWrappers,
     generatePseudoRandomSalt,
-    Order,
     orderHashUtils,
-    signatureUtils,
-    SignedOrder,
+    signatureUtils
 } from '0x.js';
 
 import { Web3Wrapper } from '@0x/web3-wrapper';

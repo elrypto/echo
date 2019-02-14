@@ -5,7 +5,6 @@ import { ContractWrappers, MetamaskSubprovider, RPCSubprovider, Web3ProviderEngi
 import { SignerSubprovider } from '@0x/subproviders';
 import { Web3Wrapper } from '@0x/web3-wrapper';
 import * as _ from 'lodash';
-import * as ReactDOM from 'react-dom';
 import { ToastProvider, withToastManager } from 'react-toast-notifications';
 
 import { Account } from './../components/Account';

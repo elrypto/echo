@@ -1,12 +1,9 @@
 import {
     assetDataUtils,
     BigNumber,
-    ContractWrappers,
     generatePseudoRandomSalt,
-    Order,
     orderHashUtils,
-    signatureUtils,
-    SignedOrder,
+    signatureUtils
 } from '0x.js';
 
 import { Web3Wrapper } from '@0x/web3-wrapper';
@@ -15,7 +12,7 @@ import * as React from 'react';
 
 import { TOKENS, TOKENS_BY_NETWORK } from './tokens';
 import { NULL_ADDRESS, ZERO, parseJSONSignedOrder } from './utils';
-import { OpenModule } from './open_module';
+
 
 import LittleCard from "../LittleCard";
 

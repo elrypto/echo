@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '@atlaskit/css-reset';
 import {DragDropContext} from 'react-beautiful-dnd';
-
+import styled from 'styled-components';
 import {startInProgress} from './../../actions';
 import Column from './Column';
 
+
+const Container = styled.div`
+  display: flex;
+`;
 
 
 const initialData = {
@@ -20,9 +24,19 @@ const initialData = {
         id: 'column-1',
         title: 'To do',
         taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
+      },
+      'column-2': {
+        id: 'column-2',
+        title: 'In progress',
+        taskIds: []
+      },
+      'column-3': {
+        id: 'column-3',
+        title: 'Done',
+        taskIds: []
       }
     },
-    columnOrder: ['column-1']
+    columnOrder: ['column-1', 'column-2', 'column-3']
 }
 
 class AdminTests extends Component {
@@ -83,15 +97,17 @@ class AdminTests extends Component {
   
   render() {
     return( 
-    <DragDropContext onDragEnd={this.onDragEnd}>
-    
-    {this.state.columnOrder.map(columnId => {
-      const column = this.state.columns[columnId];
-      const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
-    
-      return <Column key={column.id} column={column} tasks={tasks} />;
-    })}
-    </DragDropContext>
+      <Container>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+        
+        {this.state.columnOrder.map(columnId => {
+          const column = this.state.columns[columnId];
+          const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
+        
+          return <Column key={column.id} column={column} tasks={tasks} />;
+        })}
+        </DragDropContext>
+      </Container>
     );
   }
 }
