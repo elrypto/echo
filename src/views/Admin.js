@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
 
-import AdminTests from './../components/test/AdminTests';
+import LoomTest from './../components/test/LoomTest';
 
 
 
@@ -14,9 +14,9 @@ class Admin extends Component {
         <Header />
         
         <div class="container">
-          <h3>--Admin--</h3>
+          <h3>--Admin/Test--</h3>
 
-         <AdminTests />
+          <LoomTest />
 
           <br/><br/>
         </div>
