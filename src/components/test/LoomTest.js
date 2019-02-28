@@ -1,13 +1,21 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Contract from './contract'
-import Text from './text'
-import Post from './post'
-import { getIndexed } from './indexer_client'
+import Contract from './loom/contract'
+import Text from './loom/text'
+import Post from './loom/post'
+import { getIndexed } from './loom/indexer_client'
 
 
 export default class LoomTest extends React.Component {
-  constructor() {
+
+  render(){
+    return(
+      <p>loom test</p>
+    );
+  }
+
+
+ /* constructor() {
     super()
     this.contract = new Contract()
     this.state = {
@@ -98,5 +106,5 @@ export default class LoomTest extends React.Component {
         </div>
       </div>
     )
-  }
+  }*/
 }

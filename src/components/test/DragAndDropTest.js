@@ -4,7 +4,7 @@ import '@atlaskit/css-reset';
 import {DragDropContext} from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import {startInProgress} from './../../actions';
-import Column from './Column';
+import Column from './dnd/Column';
 
 
 const Container = styled.div`
@@ -39,7 +39,7 @@ const initialData = {
     columnOrder: ['column-1', 'column-2', 'column-3']
 }
 
-class AdminTests extends Component {
+class DragAndDropTest extends Component {
   state = initialData;
 
 
@@ -147,6 +147,6 @@ const mapStateToProps = state => {
   const {inProgress} = state;
   return {inProgress}
 }
-export default connect(mapStateToProps)(AdminTests)
+export default connect(mapStateToProps)(DragAndDropTest)
 
 
