@@ -1,16 +1,35 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import Contract from './loom/contract'
-import Text from './loom/text'
-import Post from './loom/post'
-import { getIndexed } from './loom/indexer_client'
+import React from "react";
+import ReactDOM from "react-dom";
+
 
 
 export default class LoomTest extends React.Component {
 
+  handleRegenPk = e => {
+    console.log("handleRegenPk");
+  }
+
+  handleLoomTestStore = e => {
+    console.log("handleLoomTestStore");
+  }
+
+  handleLoomTestRetrieve = e => {
+    console.log("handleLoomTestRetrieve");
+  }
+
+
+
   render(){
     return(
-      <p>loom test</p>
+      <div>
+        <p>loom test</p>
+        <button class="btn btn-secondary" onClick={this.handleRegenPk}>
+              Re/Generate PK Value in File</button>
+        <button class="btn btn-secondary" onClick={this.handleLoomTestStore}>
+              Store TestVal to LOOM</button>
+        <button class="btn btn-secondary" onClick={this.handleLoomTestRetrieve}>
+          Retrieve TestVal from LOOM (console)</button>
+      </div>
     );
   }
 

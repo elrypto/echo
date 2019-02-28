@@ -17,8 +17,6 @@ class Admin extends Component {
         <div class="container">
           <h3>--Admin/Test--</h3>
 
-          <DragAndDropTest />
-
           <LoomTest />
 
           <br/><br/>
