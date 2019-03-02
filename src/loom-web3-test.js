@@ -25,3 +25,14 @@ const contractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
 
 // Instantiate the contract and let it ready to be used
 const contract = new web3.eth.Contract(ABI, contractAddress, {from});
+
+
+(async function () {
+  // Set value of 47
+  await contract.methods.set(17).send()
+
+  // Get the value
+  const result = await contract.methods.get().call()
+  console.log("result from loom call:" + result);
+  // result should be 47
+})()
