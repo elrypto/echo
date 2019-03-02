@@ -51,7 +51,7 @@ export default class LoomTest extends React.Component {
 
     // Get the contract address (we don't need to know the address just the name specified in genesis.json
     //const loomContractAddress = await this.state.client.getContractAddressAsync('SimpleStore')
-    const loomContractAddress = '';
+    const loomContractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
     console.log("loomContractAddress:" + loomContractAddress);
 
     // Translate loom address to hexa to be compatible with Web3
