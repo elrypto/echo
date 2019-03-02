@@ -42,7 +42,7 @@ const web3 = new Web3(new LoomProvider(client, privateKey))
   const contract = new web3.eth.Contract(ABI, contractAddress, {from: fromAddress})
 
   // Listen for new value set
-  contract.events.NewValueSet({}, (err, newValueSet) {
+  contract.events.NewValueSet({}, (err, newValueSet) => {
     if (err) {
       console.error('error', err)
       return
