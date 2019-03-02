@@ -1,4 +1,4 @@
-import Web3 from 'web3';
+const Web3 = require ('web3');
 const { readFileSync } = require('fs');
 const LoomTruffleProvider = require('loom-truffle-provider');
 const {CryptoUtils, Client, LoomProvider} = require('loom-js');
