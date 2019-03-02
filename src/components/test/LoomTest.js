@@ -50,19 +50,26 @@ export default class LoomTest extends React.Component {
     console.log("fromAddress:" + fromAddress);
 
     // Get the contract address (we don't need to know the address just the name specified in genesis.json
+
+////const contractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
+
+// Instantiate the contract and let it ready to be used
+////const contract = new web3.eth.Contract(ABI, contractAddress, {from});	
+
     //const loomContractAddress = await this.state.client.getContractAddressAsync('SimpleStore')
-    const loomContractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
-    console.log("loomContractAddress:" + loomContractAddress);
+    //const loomContractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
+    //console.log("loomContractAddress:" + loomContractAddress);
 
     // Translate loom address to hexa to be compatible with Web3
-    const contractAddress = CryptoUtils.bytesToHexAddr(loomContractAddress.local.bytes)
-    console.log("contractAddress:" + contractAddress);
+    //const contractAddress = CryptoUtils.bytesToHexAddr(loomContractAddress.local.bytes)
+const contractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';     
+console.log("contractAddress:" + contractAddress);
 
     // Instantiate the contract
     const contract = new web3.eth.Contract(ABI, contractAddress, {from: fromAddress})
     console.log("contract:" + contract);
 
-
+/*
     // Listen for new value set
     contract.events.NewValueSet({}, (err, newValueSet) => {
       if (err) {
@@ -72,9 +79,9 @@ export default class LoomTest extends React.Component {
 
       console.log('New value set', newValueSet.returnValues)
     })
-
+*/
     console.log("sending val...");
-    await contract.methods.set(47).send();
+    await contract.methods.set('47').send();
     console.log("retrieving val...");
     const result = await contract.methods.get().call();
     console.log("result from loom get:" + result);
