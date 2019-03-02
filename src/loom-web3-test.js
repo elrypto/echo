@@ -1,7 +1,7 @@
 const Web3 = require ('web3');
 const { readFileSync } = require('fs');
 const LoomTruffleProvider = require('loom-truffle-provider');
-const {CryptoUtils, Client, LoomProvider} = require('loom-js');
+const {CryptoUtils, Client, LoomProvider, LocalAddress} = require('loom-js');
 
 const privateKey = CryptoUtils.generatePrivateKey();
 const publicKey = CryptoUtils.publicKeyFromPrivateKey(privateKey);
