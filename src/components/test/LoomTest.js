@@ -1,9 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Web3 from 'web3';
-import { readFileSync } from 'fs';
 import LoomTruffleProvider from 'loom-truffle-provider';
 import {CryptoUtils, Client, LoomProvider, LocalAddress} from 'loom-js';
+import utf8 from 'utf8';
+
+
+const LOOM_SERVER = '192.168.2.25:46658';  //local loom-host
+//const LOOM_SERVER = '127.0.0.1:46658';  //localhost
+//const LOOM_SERVER = 'extdev-plasma-us1.dappchains.com:80'; //loom testnet
 
 
 export default class LoomTest extends React.Component {
@@ -19,54 +24,64 @@ export default class LoomTest extends React.Component {
   }
 
   componentDidMount(){
-    const tempPrivateKey = CryptoUtils.generatePrivateKey();
-    const tempPublicKey = CryptoUtils.publicKeyFromPrivateKey(tempPrivateKey);
-    let tempClient = this.getClient(tempPrivateKey, tempPublicKey);
+    const tempClient = this.getClient();
     this.setState({
-      client:tempClient,
-      privateKey:tempPrivateKey,
-      publicKey:tempPublicKey
+      client:tempClient
     });
   }
 
-  getClient = (privateKey, publicKey) => {
+
+  //var extdev = new Web3('extdev-plasma-us1.dappchains.com);
+
+  getClient = () => { 
     const client = new Client(
       'default',
-      'ws://127.0.0.1:46658/websocket',
-      'ws://127.0.0.1:46658/queryws',
+      `ws://${LOOM_SERVER}/websocket`,
+      `ws://${LOOM_SERVER}/queryws`,
     )
     return client;
   }
 
 
+  setKeys = () => { 
+    let tempPrivateKey = require('./../../smart-contract/2/priv_key');
+    const utfPrivateKey = utf8.encode(tempPrivateKey);
+    const tempPublicKey = CryptoUtils.publicKeyFromPrivateKey(utfPrivateKey);
+    this.setState({
+      privateKey:tempPrivateKey,
+      publicKey:tempPublicKey
+    })
+
+  }
+
   setVal = async(val) => {
     console.log("setVal():" + val);
-    const web3 = new Web3(new LoomProvider(this.state.client, this.state.privateKey));
 
+    this.setKeys();
+
+    const web3 = new Web3(new LoomProvider(this.state.client, this.state.privateKey));
     const ABI = [{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"set","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
 
     // Getting our address based on public key
-    const fromAddress = LocalAddress.fromPublicKey(this.state.publicKey).toString()
+    const fromAddress = LocalAddress.fromPublicKey(this.state.publicKey).toString();
     console.log("fromAddress:" + fromAddress);
 
     // Get the contract address (we don't need to know the address just the name specified in genesis.json
-
-////const contractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
+    ////const contractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
 
 // Instantiate the contract and let it ready to be used
-////const contract = new web3.eth.Contract(ABI, contractAddress, {from});	
 
-    //const loomContractAddress = await this.state.client.getContractAddressAsync('SimpleStore')
-    //const loomContractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';
-    //console.log("loomContractAddress:" + loomContractAddress);
+  const loomContractAddress = await this.state.client.getContractAddressAsync('SimpleStore');
+  
+  //console.log("loomContractAddress:" + loomContractAddress);
 
     // Translate loom address to hexa to be compatible with Web3
-    //const contractAddress = CryptoUtils.bytesToHexAddr(loomContractAddress.local.bytes)
-const contractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';     
-console.log("contractAddress:" + contractAddress);
+  const contractAddress = CryptoUtils.bytesToHexAddr(loomContractAddress.local.bytes);
+   //const contractAddress = '0x7c40eFe4E2E980C0236adBa8032430901680339E';     
+   console.log("contractAddress:" + contractAddress);
 
     // Instantiate the contract
-    const contract = new web3.eth.Contract(ABI, contractAddress, {from: fromAddress})
+    const contract = new web3.eth.Contract(ABI, contractAddress, {from: fromAddress});
     console.log("contract:" + contract);
 
 /*
