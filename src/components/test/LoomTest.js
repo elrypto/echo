@@ -44,10 +44,10 @@ export default class LoomTest extends React.Component {
 
 
   setKeys = () => { 
-    let tempPrivateKey = require('./../../smart-contract/2/priv_key');
+    //let tempPrivateKey = require('./../../smart-contract/2/priv_key');
     //const utfPrivateKey =  CryptoUtils.B64ToUint8Array(tempPrivateKey);
-    const utfPrivateKey = CryptoUtils.B64ToUint8Array(utf8.encode(tempPrivateKey));
-    const tempPublicKey = CryptoUtils.publicKeyFromPrivateKey(utfPrivateKey);
+    //const utfPrivateKey = CryptoUtils.B64ToUint8Array(utf8.encode(tempPrivateKey));
+    //const tempPublicKey = CryptoUtils.publicKeyFromPrivateKey(utfPrivateKey);
     
     const tempPrivateKey = CryptoUtils.generatePrivateKey();
     const tempPublicKey = CryptoUtils.publicKeyFromPrivateKey(tempPrivateKey);
