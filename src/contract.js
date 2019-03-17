@@ -30,11 +30,11 @@ export default class Contract {
     let networkId = 'extdev-plasma-us1'
 
 
-    if (process.env.NETWORK == 'extdev') {
+    /*if (process.env.NETWORK == 'extdev') {
       writeUrl = 'ws://extdev-plasma-us1.dappchains.com:80/websocket'
       readUrl = 'ws://extdev-plasma-us1.dappchains.com:80/queryws'
       networkId = 'extdev-plasma-us1'
-    }
+    }*/
 
     this.client = new Client(networkId, writeUrl, readUrl)
 
@@ -53,7 +53,8 @@ export default class Contract {
   }
 
   async _createContractInstance() {
-    const networkId = await this._getCurrentNetwork()
+    //const networkId = await this._getCurrentNetwork()
+    const networkId = 'extdev-plasma-us1';
     this.currentNetwork = SimpleStore.networks[networkId]
 
     if (!this.currentNetwork) {
