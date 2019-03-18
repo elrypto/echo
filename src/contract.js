@@ -53,8 +53,8 @@ export default class Contract {
   }
 
   async _createContractInstance() {
-    //const networkId = await this._getCurrentNetwork()
-    const networkId = 'extdev-plasma-us1';
+    const networkId = await this._getCurrentNetwork();
+    //const networkId = 'extdev-plasma-us1';
     this.currentNetwork = SimpleStore.networks[networkId]
 
     if (!this.currentNetwork) {
@@ -66,7 +66,7 @@ export default class Contract {
       from: this.currentUserAddress
     })
 
-    this.simpleStoreInstance.events.NewValueSet({ filter: { _value: "10" }}, (err, event) => {
+    /*this.simpleStoreInstance.events.NewValueSet({ filter: { _value: "10" }}, (err, event) => {
       if (err) console.error('Error on event', err)
       else {
         if (this.onEvent) {
@@ -83,7 +83,7 @@ export default class Contract {
           this.onEvent(event.returnValues)
         }
       }
-    })
+    })*/
   }
 
   addEventListener(fn) {
