@@ -44,19 +44,27 @@ class Web3Test extends Component {
 
   storeValue = async () => {
     const { accounts, contract, web3 } = this.state;
-
     console.log("using web3 version:" + web3.version);
 
     // Stores a given value, 5 by default.
-    await contract.methods.set(this.state.textVal).send({ from: accounts[0] });
+    await contract.methods.setIndexName(this.state.textVal).send({ from: accounts[0] });
     this.setState({ textVal: "" });
 
     // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
+    const response = await contract.methods.getIndexName().call();
 
     // Update state with the result.
     this.setState({ storageValue: response });
   };
+
+
+  addToken = async() => {
+    const { accounts, contract, web3 } = this.state;
+    console.log("using web3 version:" + web3.version);
+
+    await contract.methods.addToken("ZRK", 10).send({ from: accounts[0] });
+    
+  }
 
 
   textChangeHandler = e => {
@@ -75,6 +83,8 @@ class Web3Test extends Component {
         <input type="text" onChange={this.textChangeHandler} value={this.state.textVal} />
         <button class="btn btn-secondary" onClick={this.storeValue}>
            Run</button>
+    
+        <button class="btn btn-secondary" onClick={this.addToken}>  Add Token</button>
       </div>
     );
   }

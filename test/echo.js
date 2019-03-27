@@ -1,17 +1,22 @@
 const Echo = artifacts.require("./Echo.sol");
-const testval = "mememe";
 
+const testval = "best windex";
 
 contract("Echo", accounts => {
-  it("...should store the value:" + testval, async () => {
+  it("...should store the index name:" + testval, async () => {
     const echoInstance = await Echo.deployed();
-
-    // Set value of 89
-    await echoInstance.set(testval, { from: accounts[0] });
-
-    // Get stored value
-    const storedData = await echoInstance.get.call();
-
+    await echoInstance.setIndexName(testval, { from: accounts[0] });
+    const storedData = await echoInstance.getIndexName.call();
     assert.equal(storedData, testval, "The value:" + testval + " was not stored.");
   });
+
+  it("...should addToken ZRX", async () => {
+    const echoInstance = await Echo.deployed();
+    await echoInstance.addToken("ZRX", 10, { from: accounts[0] });
+    var tokenCount = await echoInstance.tokens;
+    console.log(tokenCount.length);
+  });
 });
+
+
+
