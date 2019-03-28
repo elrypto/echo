@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
 
-import Web3Test from './../components/test/Web3Test';
-//import DragAndDropTest from './../components/test/DragAndDropTest';
+//import Web3Test from './../components/test/Web3Test';
+import {TOKENS} from './../components/0x/tokens';
+import DragAndDropTest from './../components/test/DragAndDropTest';
+
 
 class Admin extends Component {
   render() {
@@ -15,7 +17,7 @@ class Admin extends Component {
         <div class="container">
           <h3>--admin--</h3>
 
-          <Web3Test />
+          <DragAndDropTest tokenData={TOKENS}/>
 
           <br/><br/>
         </div>
