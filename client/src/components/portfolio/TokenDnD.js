@@ -19,13 +19,16 @@ const initialData = {
       'task-2': {id: 'task-2', symbol: TOKENS.GNT.symbol, image: TOKENS.GNT.image},
       'task-3': {id: 'task-3', symbol: TOKENS.WETH.symbol, image: TOKENS.WETH.image},
       'task-4': {id: 'task-4', symbol: TOKENS.REP.symbol, image: TOKENS.REP.image},
-      'task-5': {id: 'task-5', symbol: TOKENS.MKR.symbol, image: TOKENS.MKR.image}
+      'task-5': {id: 'task-5', symbol: TOKENS.MKR.symbol, image: TOKENS.MKR.image},
+      'task-6': {id: 'task-6', symbol: TOKENS.BNB.symbol, image: TOKENS.BNB.image},
+      'task-7': {id: 'task-7', symbol: TOKENS.OMG.symbol, image: TOKENS.OMG.image},
+      'task-7': {id: 'task-7', symbol: TOKENS.BAT.symbol, image: TOKENS.BAT.image},
     },
     columns: {
       'column-1': {
         id: 'column-1',
         title: 'Tokens Available',
-        taskIds: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5']
+        taskIds: ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7']
       },
       'column-2': {
         id: 'column-2',

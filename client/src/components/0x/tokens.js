@@ -39,6 +39,30 @@ export const TOKENS = {
         isMintable: false,
         image: 'https://0xproject.com/images/token_icons/WETH.png',
     },
+    BNB: {
+        name: 'Binance',
+        decimals: 18,
+        symbol: 'BNB',
+        isTradeable: true,
+        isMintable: false,
+        image: 'https://etherscan.io/token/images/bnb_28_2.png',
+    },
+    OMG: {
+        name: 'OmiseGO',
+        decimals: 18,
+        symbol: 'OMG',
+        isTradeable: true,
+        isMintable: false,
+        image: 'https://etherscan.io/token/images/omise.png',       
+    },
+    BAT: {
+        name: 'Basic Attention Token',
+        decimals: 18,
+        symbol: 'BAT',
+        isTradeable: true,
+        isMintable: false,
+        image: 'https://etherscan.io/token/images/bat.png',       
+    },
 };
 export const ETHER_TOKEN = {
     name: 'Ether',

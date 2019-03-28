@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TokenDnD from './../components/portfolio/TokenDnD';
 import IndexNaming from './../components/portfolio/IndexNaming';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: inline;
+`;
 
 class Create extends Component {
   state = {};
@@ -9,16 +14,18 @@ class Create extends Component {
 
   render() {
     return( 
-      <div>
+    
+        <Container>
+          <IndexNaming />
+
+
+          <button class="btn btn-primary">Save Index</button>
+
+
+         <TokenDnD />
         
+        </Container>
 
-        <IndexNaming />
-
-        <TokenDnD />
-
-        <button class="btn btn-primary">Save Index</button>
-
-      </div>
     );
   }
 }
