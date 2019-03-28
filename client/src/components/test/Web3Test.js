@@ -5,11 +5,13 @@ import getWeb3 from "./../../utils/getWeb3";
 
 class Web3Test extends Component {
   state = { 
-    storageValue: "", 
+    currentIndexName: "", 
     web3: null, 
     accounts: null, 
     contract: null, 
-    textVal: "" 
+    indexNameText: "",
+    tokenToAddSymbol: "",
+    tokenToAddAmount: 0
   };
 
 
@@ -32,6 +34,8 @@ class Web3Test extends Component {
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance });
+
+      this.getExistingIndex();
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -42,33 +46,54 @@ class Web3Test extends Component {
   };
 
 
+  getExistingIndex = async() => {
+    const { contract } = this.state;
+    const response = await contract.methods.getIndexName().call();
+    this.setState({currentIndexName: response});
+  }
+
+
   storeValue = async () => {
     const { accounts, contract, web3 } = this.state;
     console.log("using web3 version:" + web3.version);
 
     // Stores a given value, 5 by default.
-    await contract.methods.setIndexName(this.state.textVal).send({ from: accounts[0] });
-    this.setState({ textVal: "" });
+    await contract.methods.createIndex(this.state.indexNameText).send({ from: accounts[0] });
+    this.setState({indexNameText: "" });
 
     // Get the value from the contract to prove it worked.
     const response = await contract.methods.getIndexName().call();
-
     // Update state with the result.
-    this.setState({ storageValue: response });
+    this.setState({ currentIndexName: response });
+    
   };
 
 
   addToken = async() => {
     const { accounts, contract, web3 } = this.state;
     console.log("using web3 version:" + web3.version);
+    console.log(`adding token sym:${this.state.tokenToAddSymbol} amount:${this.state.tokenToAddAmount}`);
 
-    await contract.methods.addToken("ZRK", 10).send({ from: accounts[0] });
-    
+    await contract.methods.addToken(this.state.tokenToAddSymbol, this.state.tokenToAddAmount)
+                                .send({ from: accounts[0] });
+
+    this.setState({
+      tokenToAddSymbol: "",
+      tokenToAddAmount: 0
+    })
   }
 
 
-  textChangeHandler = e => {
-    this.setState({ textVal : e.target.value});
+  textIndextNameChangeHandler = e => {
+    this.setState({ indexNameText : e.target.value});
+  }
+
+  symbolChangeHandler = e => {
+    this.setState({ tokenToAddSymbol: e.target.value });
+  }
+
+  amountChangeHandler = e => {
+    this.setState({ tokenToAddAmount: e.target.value });
   }
 
 
@@ -79,11 +104,13 @@ class Web3Test extends Component {
     return (
       <div className="App">
         <h3>--*-*--**-**</h3>
-        <div>The stored value is: {this.state.storageValue}</div>
-        <input type="text" onChange={this.textChangeHandler} value={this.state.textVal} />
+        <div>Index name is: {this.state.currentIndexName}</div>
+        <input type="text" onChange={this.textIndextNameChangeHandler} value={this.state.indexNameText} />
         <button class="btn btn-secondary" onClick={this.storeValue}>
-           Run</button>
-    
+           Create Index (name)</button>
+           <div>Token Symbol, Amount</div>
+           <input type="text" onChange={this.symbolChangeHandler} value={this.state.tokenToAddSymbol} />
+           <input type="text" onChange={this.amountChangeHandler} value={this.state.tokenToAddAmount} />
         <button class="btn btn-secondary" onClick={this.addToken}>  Add Token</button>
       </div>
     );
