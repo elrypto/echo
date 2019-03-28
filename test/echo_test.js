@@ -17,6 +17,7 @@ contract("Echo", accounts => {
 
   it("...should addToken ZRX", async () => {
     const echoInstance = await Echo.deployed();
+    await echoInstance.createIndex(testval, { from: accounts[0] });
     await echoInstance.addToken(zrx, 10, { from: accounts[0] });
     let token  = await echoInstance.getToken(0);
     assert.equal(token[0], zrx, "The token " + zrx + " was not stored.");
@@ -27,16 +28,24 @@ contract("Echo", accounts => {
 contract("Echo", accounts => {
   it("...should have a token count of 1", async () => {
     const echoInstance = await Echo.deployed();
+    await echoInstance.createIndex(testval, { from: accounts[0] });
     await echoInstance.addToken(zrx, 10, { from: accounts[0] });
     let count = await echoInstance.tokenCount({ from: accounts[0] });
     assert.equal(1, count, "The token could should have been 1.");
   });
+
+    it("...should check that account was created", async () => {
+      //use modifier?
+      const echoInstance = await Echo.deployed();
+     
+    });
 });
 
 
 contract("Echo", accounts => {
   it("...should get 3 tokens that were just added", async () => {
     const echoInstance = await Echo.deployed();
+    await echoInstance.createIndex(testval, { from: accounts[0] });
     await echoInstance.addToken(zrx, 1, { from: accounts[0] });
     await echoInstance.addToken(mkr, 1, { from: accounts[0] });
     await echoInstance.addToken(weth, 1, { from: accounts[0] });
@@ -53,5 +62,6 @@ contract("Echo", accounts => {
     assert.equal(weth, res3[0], "expected weth in first slot");
   });
 });
+
 
 

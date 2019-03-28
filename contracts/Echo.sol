@@ -15,7 +15,13 @@ contract Echo {
     uint amount; 
   }
 
-  function addToken(string memory _symbol, uint _amount) public {
+  modifier indexMustExist(address _address){
+    bytes memory emptyStringTest = bytes(ownerToIndexName[_address]);
+    require(emptyStringTest.length != 0, " Index must exist, call createIndex() and initialize first.");
+    _;
+  }
+
+  function addToken(string memory _symbol, uint _amount) public indexMustExist(msg.sender){
     //TODO:require(validation)
     //TODO:require ownerToIndexName[msg.sender] != "" || exists 
             // error = "you must create a index before adding a token by calling createindex"
@@ -55,7 +61,6 @@ contract Echo {
     return result;
   }
   
-
 
   function createIndex(string memory _name) public {
     ownerToIndexName[msg.sender] = _name;
