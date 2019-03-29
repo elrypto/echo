@@ -5,6 +5,7 @@ import Footer from './../components/Footer';
 //import Web3Test from './../components/test/Web3Test';
 import {TOKENS} from './../components/0x/tokens';
 import DragAndDropTest from './../components/test/DragAndDropTest';
+import DynamicJSONTest from '../components/test/DynamicJSONTest';
 
 
 class Admin extends Component {
@@ -17,7 +18,7 @@ class Admin extends Component {
         <div class="container">
           <h3>--admin--</h3>
 
-          <DragAndDropTest tokenData={TOKENS}/>
+          <DynamicJSONTest tokenData={TOKENS}/>
 
           <br/><br/>
         </div>

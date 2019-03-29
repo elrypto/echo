@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import TokenDnD from './../components/portfolio/TokenDnD';
 import IndexNaming from './../components/portfolio/IndexNaming';
 import styled from 'styled-components';
+import {TOKENS} from './../components/0x/tokens';
 
 const Container = styled.div`
   display: inline;
@@ -18,11 +19,9 @@ class Create extends Component {
         <Container>
           <IndexNaming />
 
-
           <button class="btn btn-primary">Save Index</button>
 
-
-         <TokenDnD />
+         <TokenDnD tokenData={TOKENS} />
         
         </Container>
 

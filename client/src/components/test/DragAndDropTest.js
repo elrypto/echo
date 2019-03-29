@@ -38,7 +38,7 @@ const Container = styled.div`
   columnOrder: ['column-1', 'column-2']
 }*/
 
-/*
+
 const initialData = {
     tasks : {
       'task-1': {id: 'task-1', content: 'take out garbage'},
@@ -64,7 +64,7 @@ const initialData = {
       }
     },
     columnOrder: ['column-1', 'column-2', 'column-3']
-}*/
+}
 
 class DragAndDropTest extends Component {
   //state = initialData;
