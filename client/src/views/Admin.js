@@ -6,9 +6,43 @@ import Footer from './../components/Footer';
 import {TOKENS} from './../components/0x/tokens';
 import DragAndDropTest from './../components/test/DragAndDropTest';
 import DynamicJSONTest from '../components/test/DynamicJSONTest';
+import { buildJSON } from '../utils/EchoUtils';
 
 
-class Admin extends Component {
+let startingPointJson = {
+  tasks : {},
+  columns: {
+      'column-1': {
+      id: 'column-1',
+      title: 'To do'
+      //taskIds: ['task-1', 'task-2', 'task-3', 'task-N']
+      },
+      'column-2': {
+      id: 'column-2',
+      title: 'In progress',
+      taskIds: []
+      },
+      'column-3': {
+      id: 'column-3',
+      title: 'Done',
+      taskIds: []
+      }
+  },
+  columnOrder: ['column-1', 'column-2', 'column-3']
+}
+
+
+export default class Admin extends Component {
+  constructor (props){
+    super(props);
+    let jsonForDnD = buildJSON(TOKENS, startingPointJson);
+    this.state = {
+      jsonData : jsonForDnD
+    }
+  }
+
+
+
   render() {
     
     return (
@@ -18,7 +52,7 @@ class Admin extends Component {
         <div class="container">
           <h3>--admin--</h3>
 
-          <DynamicJSONTest tokenData={TOKENS}/>
+          <DragAndDropTest jsonData={this.state.jsonData} />
 
           <br/><br/>
         </div>
@@ -28,4 +62,3 @@ class Admin extends Component {
   }
 }
 
-export default Admin;

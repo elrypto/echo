@@ -12,6 +12,7 @@ const Container = styled.div`
 `;
 
 
+
 /*const initialData = {
   tasks : {
     'task-1': {id: 'task-1', symbol: TOKENS.ZRX.symbol, image: TOKENS.ZRX.image},
@@ -38,6 +39,47 @@ const Container = styled.div`
   columnOrder: ['column-1', 'column-2']
 }*/
 
+const sample_json = 
+{
+  "tasks":{
+    "task-1":{"id":"task-1","content":"ZRX","image":"https://0xproject.com/images/token_icons/ZRX.png"},
+    "task-2":{"id":"task-2","content":"MKR","image":"https://0xproject.com/images/token_icons/MKR.png"},
+    "task-3":{"id":"task-3","content":"GNT","image":"https://0xproject.com/images/token_icons/GNT.png"}
+    },
+    "columns":{
+      "column-1":
+      {"id":"column-1","title":"Available Tokens",
+        "taskIds":["task-1","task-2","task-3"]
+      },
+      "column-2":
+      {"id":"column-2", "title":"Tokens to Purchase",
+        "taskIds":[]
+      }
+    },
+      "columnOrder":["column-1","column-2"]
+  }
+
+
+const sample_json2 = 
+  {
+    "tasks":{
+      "task-1":{"id":"task-1","content":"take out garbage"},
+      "task-2":{"id":"task-2","content":"cook dinner"},
+      "task-3":{"id":"task-3","content":"buy groceries"},
+    },
+    "columns":{
+      "column-1":
+      {"id":"column-1","title":"To do",
+        "taskIds":["task-1","task-2","task-3"]
+      },
+      "column-2":{"id":"column-2","title":"In progress",
+      "taskIds":[]}
+    },
+      "columnOrder":["column-1","column-2"]
+  }
+
+
+
 
 const initialData = {
     tasks : {
@@ -56,14 +98,9 @@ const initialData = {
         id: 'column-2',
         title: 'In progress',
         taskIds: []
-      },
-      'column-3': {
-        id: 'column-3',
-        title: 'Done',
-        taskIds: []
       }
     },
-    columnOrder: ['column-1', 'column-2', 'column-3']
+    columnOrder: ['column-1', 'column-2']
 }
 
 class DragAndDropTest extends Component {
@@ -72,12 +109,14 @@ class DragAndDropTest extends Component {
   constructor(props){
     super(props);
     console.log("constructor");
+    this.state = this.props.jsonData;
+    //this.state = initialData;
+    //this.state = sample_json2;
+    //this.state = sample_json;
+      
+    console.log(JSON.stringify(this.state));  
   }
 
-
-  componentDidMount(){
-  
-  }
 
   handleTestInvokeAction = e => {
     console.log("handleTestInvokeAction");

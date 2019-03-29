@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {TOKENS} from '../0x/tokens';
+import {buildJSON} from './../../utils/EchoUtils';
 
 
     let token_json = {
@@ -26,39 +27,15 @@ import {TOKENS} from '../0x/tokens';
 
 
 export default class DynamicJSONTest extends Component {
- 
-
-  buildJSON = () => {
-    const {tokenData} = this.props;
-    //console.log("dynamic json, tree received -->");
-    //console.log(JSON.stringify(this.props.tokenData));
-
-    let taskIdCount = 1;
-    let taskIds = [];
-    for (let i in tokenData){
-        console.log(i);
-        console.log(tokenData[`${i}`]);
-
-        token_json.tasks[`task-${taskIdCount}`] = 
-            { id: `task-${taskIdCount}`,
-              symbol: tokenData[`${i}`].symbol,
-              image: tokenData[`${i}`].image,  
-            }
-
-        taskIds.push(`taskId-${taskIdCount}`);
-        taskIdCount++;
-    }
-
-    token_json.columns["column-1"].taskIds = taskIds;
-    console.log(taskIds);
-    console.log(token_json);
-    console.log(JSON.stringify(token_json));
+  callBuildJSON = () => {
+    console.log("callBuildJSON")
+    let json = buildJSON(TOKENS, token_json);
   }
 
   render() {
     return( 
         <div>
-            <button class="btn btn-secondary" onClick={this.buildJSON}>(-- build JSON tree --)</button>
+            <button class="btn btn-secondary" onClick={this.callBuildJSON}>(-- build JSON tree --)</button>
         </div>
     );
   }
