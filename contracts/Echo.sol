@@ -1,6 +1,10 @@
 pragma solidity ^0.5.0;
 
 
+/*
+ Currently not used
+*/
+
 contract Echo {
   mapping (address => string) ownerToIndexName;
   mapping (uint => address) public tokenToOwner;
