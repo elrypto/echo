@@ -33,6 +33,10 @@ contract("EchoRegister", accounts => {
     assert.equal(accounts[0], all[0], "The value:" + accounts[0] + " was not returned.");
     assert.equal(accounts[1], all[1], "The value:" + accounts[1] + " was not returned.");
     assert.equal(accounts[2], all[2], "The value:" + accounts[2] + " was not returned.");
+    //console.log("count returned" + await echoInstance.getCount());
+    let count = await echoInstance.getCount();
+    //console.log("count =" + count);
+    assert.equal(count, 3, "Count should be 3")
   });
 });
 

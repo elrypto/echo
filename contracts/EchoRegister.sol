@@ -15,6 +15,10 @@ contract EchoRegister {
   }
 
 
+  function getCount() public view returns(uint){
+    return registeredCount;
+  }
+
   function getAllAddresses() view public returns (address[] memory) {
     address[] memory result = new address[](registeredCount);
     for (uint i = 0; i < registeredCount; i++){
