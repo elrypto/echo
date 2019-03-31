@@ -3,6 +3,7 @@ import {render} from "react-dom";
 import './index.css';
 import Backbone from 'backbone';
 import './bootstrap.min.css';
+import './style.css';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from './../components/Header';
 import Footer from './../components/Footer';
-import RegisterAddress from './../components/RegisterAddress';
+import RegisterAddress from '../components/echo/RegisterAddress';
 
-class Admin extends Component {
+export default class Register extends Component {
   render() {
     
     return (
@@ -19,4 +19,3 @@ class Admin extends Component {
   }
 }
 
-export default Admin;

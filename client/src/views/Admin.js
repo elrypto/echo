@@ -7,6 +7,8 @@ import {TOKENS} from './../components/0x/tokens';
 import DragAndDropTest from './../components/test/DragAndDropTest';
 import DynamicJSONTest from '../components/test/DynamicJSONTest';
 import { buildJSON } from '../utils/EchoUtils';
+import ShowAccounts from './../components/echo/ShowAccounts';
+ 
 
 
 let startingPointJson = {
@@ -50,9 +52,12 @@ export default class Admin extends Component {
         <Header />
         
         <div class="container">
-          <h3>--admin--</h3>
+          <h3>--a**d*m**i*n--</h3>
 
-          <DragAndDropTest jsonData={this.state.jsonData} />
+          <hr class="my4"/>
+
+          <ShowAccounts />
+         
 
           <br/><br/>
         </div>

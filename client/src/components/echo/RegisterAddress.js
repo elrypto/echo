@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import EchoRegisterContract from "./../contracts/EchoRegister.json";
-import getWeb3 from "./../utils/getWeb3";
+import EchoRegisterContract from "./../../contracts/EchoRegister.json";
+import getWeb3 from "../../utils/getWeb3";
 
 
 export default class RegisterAddress extends Component {
