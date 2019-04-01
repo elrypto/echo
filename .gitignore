@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+/client/node_modules
+/tracker/node_modules
+
 # testing
 /coverage
 
