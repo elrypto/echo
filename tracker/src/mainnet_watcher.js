@@ -1,9 +1,9 @@
-
+require('dotenv').config()
 const Web3 = require('web3');
 const {ERC20ABI} = require('./erc20');
-const INFURA_HTTP = 'https://mainnet.infura.io/v3/393be4249e1c41239b63a60c555f7bea';
-const INFURA_RINKEBY_HTTP = 'https://rinkeby.infura.io/v3/393be4249e1c41239b63a60c555f7bea';
-const INFURA_RINKEBY_WSS = 'wss://rinkeby.infura.io/v3/393be4249e1c41239b63a60c555f7bea';
+const INFURA_HTTP = 'https://mainnet.infura.io/v3/' + process.env.INFURA_API_KEY;
+const INFURA_RINKEBY_HTTP = 'https://rinkeby.infura.io/v3/' + process.env.INFURA_API_KEY;
+const INFURA_RINKEBY_WSS = 'wss://rinkeby.infura.io/v3/' + process.env.INFURA_API_KEY;
 const INFURA_BASE_RINKEBY_WSS = 'wss://rinkeby.infura.io/ws';
 const ZRX_CONTRACT_ADDR = '0xe41d2489571d322189246dafa5ebde1f4699f498';
 

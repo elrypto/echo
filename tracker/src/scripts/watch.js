@@ -10,6 +10,8 @@ const ganacheWatcher = require('./../ganache_watcher');
     //robstenWatcher.rainContract();
     //mainnetWatcher.subscribe();
 
-    ropstenWatcher.watchForCreateAccount();
+    ropstenWatcher.getPreviousCreatedAccounts();
+
+    //ropstenWatcher.watchForAccountCreated();
 
     console.log('... watcher started');
