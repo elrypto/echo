@@ -48,4 +48,8 @@ contract EchoRegister {
   function getAddressForId(uint _id) public view returns (address){
     return registeredToAddress[_id];
   }
+
+  function getIndexForAddress(address _addr) public view returns (string memory){
+    return registeredToIndexName[_addr];
+  }
 }

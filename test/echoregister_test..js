@@ -24,7 +24,7 @@ contract("EchoRegister", accounts => {
 
 
 contract("EchoRegister", accounts => {
-  it("...3 accounts returned:" + testval, async () => {
+  it("...3 accounts returned:", async () => {
     const echoInstance = await Echo.deployed();
     await echoInstance.createIndex("first index", { from: accounts[0] });
     await echoInstance.createIndex("second index", { from: accounts[1] });
@@ -42,7 +42,7 @@ contract("EchoRegister", accounts => {
 
 
 contract("EchoRegister", accounts => {
-  it("...that it will not allow me to create more than 1 index for this address:" + testval, async () => {
+  it("...that it will not allow me to create more than 1 index for this address:", async () => {
     const echoInstance = await Echo.deployed();
     await echoInstance.createIndex(testval, { from: accounts[0] });
     
@@ -53,4 +53,14 @@ contract("EchoRegister", accounts => {
       //console.log(err);
     }
   });
+
+  it("...will return the index with the addresss provided", async () => {
+    const echoInstance = await Echo.deployed();
+    let expected = await echoInstance.getIndexForAddress(accounts[0]);
+    await echoInstance.createIndex("gibberish", { from: accounts[1] });
+    assert.equal(expected, testval, "correct index not returned for this address");
+    let unexpected = await echoInstance.getIndexForAddress(accounts[1]);
+    assert(testval != unexpected, "two addresses should not return the same index name (for this test)");
+  });
+
 });
