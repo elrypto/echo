@@ -14,6 +14,12 @@ contract EchoRegister {
     _;
   }
 
+  modifier onlyOnePerAddress(){
+    bytes memory indexStr = bytes( registeredToIndexName[msg.sender]);
+    require(indexStr.length < 1, " Only one index per address, you can update the name or you must remove it before creating another");
+    _;
+  }
+
 
   function getCount() public view returns(uint){
     return registeredCount;
@@ -28,7 +34,7 @@ contract EchoRegister {
   }
 
 
-  function createIndex(string memory _name) public {
+  function createIndex(string memory _name) public onlyOnePerAddress {
     registeredToIndexName[msg.sender] = _name;
     registeredCount++;
     registeredToAddress[registeredCount] = msg.sender;

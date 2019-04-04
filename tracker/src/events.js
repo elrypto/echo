@@ -25,9 +25,7 @@ const subscribeLogEvent = (contract, eventName) => {
   })
 
   subscribedEvents[eventName] = subscription
-
-  console.log(`subscribed to event '${eventName}' of contract '${contract.options.address}' `)
-
+  console.log(`subscribed to event '${eventName}' of contract '${contract.options.address}' `);
 }
 
 const unsubscribeEvent = (eventName) => {

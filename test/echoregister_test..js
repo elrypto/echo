@@ -40,3 +40,17 @@ contract("EchoRegister", accounts => {
   });
 });
 
+
+contract("EchoRegister", accounts => {
+  it("...that it will not allow me to create more than 1 index for this address:" + testval, async () => {
+    const echoInstance = await Echo.deployed();
+    await echoInstance.createIndex(testval, { from: accounts[0] });
+    
+    try{
+      await echoInstance.createIndex(testval, { from: accounts[0] });
+    }catch(err){
+      assert(err.toString().indexOf("Only one index per address") != -1)
+      //console.log(err);
+    }
+  });
+});
