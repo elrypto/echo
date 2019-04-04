@@ -57,11 +57,20 @@ export default class ShowAccounts extends Component {
     }
 
     loadIndexesForAccounts = async() => {
-      console.log("loadAccounts()");
+      console.log("loadIndexesforAccounts()");
       const {web3, accounts, contract, loadedAccounts} = this.state;
 
       if (loadedAccounts){
         const response = await contract.methods.getAllAddresses().call();
+        let indexesForAddress = {}
+
+        for (let i=0; i < response.length; i++){
+          let index = await contract.methods.getIndexForAddress(response[i]).call();
+          indexesForAddress[response[i]] = index;
+        }
+
+        this.setState({loadedAccounts:indexesForAddress})
+        console.log(indexesForAddress);
       }else{
         console.error("call loadAccounts() first, this method uses that state");
       }

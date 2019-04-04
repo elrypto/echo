@@ -10,7 +10,7 @@ require('dotenv').config()
 
 module.exports = {
   contracts_build_directory: join(__dirname, 'client/src/contracts'),
-  contracts_build_directory: join(__dirname, 'tracker/src/contracts'),
+  //contracts_build_directory: join(__dirname, 'tracker/src/contracts'),   
   networks: {
     loom_dapp_chain: {
       provider: function() {
