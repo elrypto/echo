@@ -1,6 +1,8 @@
+require('dotenv').config()
+
 const {ERC20ABI} = require('./erc20');
 const Web3 = require('web3');
-const INFURA_HTTP = 'https://ropsten.infura.io/v3/393be4249e1c41239b63a60c555f7bea';
+const INFURA_HTTP = 'https://ropsten.infura.io/v3/' + process.env.INFURA_API_KEY;
 const RAIN_ADDRESS = '0x842e71cDD25d4B279eB3058A2FB9960b0f10D910';
 const FIRE_ADDRESS = '0xb71479cc1ff8ed31e9d18bdb7f004964a56fdb89';
   //1 - 0x63B99d542d7218842649E3A7Df348498efE1e733
@@ -8,8 +10,24 @@ const FIRE_ADDRESS = '0xb71479cc1ff8ed31e9d18bdb7f004964a56fdb89';
 const privateKey = '0x2d13625d67bb22f9e0f78b0b44fb7dd8ad01f9a135084810df40296d1034979d';
 const privateKey2 = '0x790794542a5b82ca945664f1de91763f9a84ba30bea4b6e098cf77c2538190c3';
 
+const ECHO_ADDR = '0xB4AFA77EF55EdF3138306753c1bCF802603a4e05';
+const ECHO_REGISTER_ADDR = '0x556c45c74d5c8b352bb327dE3F9E3CBF722c371c';
+import EchoRegister from './../../contracts/EchoRegister';
+const_ECHO_REGISTER_ABI = "";
+
+
+function watchForCreateAccount(){
+  console.log("watching ropsten for account creation on echo register contract, addr:" + ECHO_REGISTER_ADDR);
+  let web3 = new Web3(INFURA_HTTP);
+  console.log(web3);
+  //let rainContract = new web3.eth.Contract(ERC20ABI, RAIN_ADDRESS);
+
+}
+
+
 async function interactWithAccounts(){
     let web3 = new Web3(INFURA_HTTP);
+   
     console.log(web3);
 
   
@@ -117,5 +135,5 @@ async function interactWithAccounts(){
 
 
 module.exports = {
-    interactWithAccounts, rainContract
+    interactWithAccounts, rainContract, createAccount
 }

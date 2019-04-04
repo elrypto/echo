@@ -10,11 +10,7 @@ require('dotenv').config()
 
 module.exports = {
   contracts_build_directory: join(__dirname, 'client/src/contracts'),
-  compilers: {
-    solc: {
-      version: '0.4.24'
-    }
-  },
+  contracts_build_directory: join(__dirname, 'tracker/src/contracts'),
   networks: {
     loom_dapp_chain: {
       provider: function() {

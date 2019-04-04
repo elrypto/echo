@@ -1,6 +1,6 @@
 const watcher = require('./../ethwatcher');
 const mainnetWatcher = require('../mainnet_watcher');
-const robstenWatcher = require('./../robsten_watcher');
+const ropstenWatcher = require('./../ropsten_watcher');
 const ganacheWatcher = require('./../ganache_watcher');
 //const {ETH_HOST} = watcher;
 
@@ -10,6 +10,6 @@ const ganacheWatcher = require('./../ganache_watcher');
     //robstenWatcher.rainContract();
     //mainnetWatcher.subscribe();
 
-    ganacheWatcher.createAccount();
+    ropstenWatcher.watchForCreateAccount();
 
     console.log('... watcher started');
