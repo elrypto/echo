@@ -1,37 +1,20 @@
 require('dotenv').config()
 
-const {ERC20ABI} = require('./erc20');
-const Web3 = require('web3');
-const INFURA_HTTP = 'https://ropsten.infura.io/v3/' + process.env.INFURA_API_KEY;
-const INFURA_BASE_ROPSTEN_WSS = 'wss://ropsten.infura.io/ws';
-const INFURA_ROPSTEN_WS = 'wss://ropsten.infura.io/v3/' + process.env.INFURA_API_KEY;
+require('./web3');
+const contracts = require('./contracts');
+const events = require('./events')
 
-const RAIN_ADDRESS = '0x842e71cDD25d4B279eB3058A2FB9960b0f10D910';
-const FIRE_ADDRESS = '0xb71479cc1ff8ed31e9d18bdb7f004964a56fdb89';
-  //1 - 0x63B99d542d7218842649E3A7Df348498efE1e733
-    //2 - 0x53D567E435480eDc44113Ea7027C586eF571446C
-const privateKey = '0x2d13625d67bb22f9e0f78b0b44fb7dd8ad01f9a135084810df40296d1034979d';
-const privateKey2 = '0x790794542a5b82ca945664f1de91763f9a84ba30bea4b6e098cf77c2538190c3';
-
-const ECHO_ADDR = '0xB4AFA77EF55EdF3138306753c1bCF802603a4e05';
-const ECHO_REGISTER_ADDR = '0x556c45c74d5c8b352bb327dE3F9E3CBF722c371c';
-const EchoRegister = require('./contracts/EchoRegister');
-//const_ECHO_REGISTER_ABI = "";
-
-/*const EchoRegister =  require('./contracts/EchoRegister');
-const ECHO_REGISTER_CONTRACT_ADDR = "0x7e54E96482d29D079B89083D05527Ac1Bd649Ae3";
-
-function createAccount(){
-    //let web3 = new Web3(GANACHE_HTTP);
-    let web3 = new Web3.providers.WebsocketProvider(GANACHE_WS);
-
-    let contract = new web3.eth.Contract(EchoRegister.abi, ECHO_REGISTER_CONTRACT_ADDR);
-
-    console.log("contract:" + contract);
-*/
 
 
 function watchForAccountCreated(){
+  //let web3 = new Web3(new Web3.providers.WebsocketProvider(INFURA_BASE_ROPSTEN_WSS));
+  //let contract = new web3.eth.Contract(EchoRegister.abi, ECHO_REGISTER_ADDR);
+  console.log("watchForAccountCreated");
+  contracts.setup()
+    .then(() => {
+      events.subscribeLogEvent(contracts.list.echoRegister, 'indexRegistered');
+    
+    })
   
 }
 
@@ -53,7 +36,7 @@ function getPreviousCreatedAccounts(){
 
 }
 
-
+/*
 async function interactWithAccounts(){
     let web3 = new Web3(INFURA_HTTP);
    
@@ -112,7 +95,7 @@ async function interactWithAccounts(){
         rainBalance = await tokenBalance(rainContract, account.address, web3);
         console.log("rain balance:" + rainBalance);
     }
-
+*/
 
     function xfer(from_account, to_address, amount, web3) {
         web3.eth.accounts.signTransaction({
@@ -164,5 +147,5 @@ async function interactWithAccounts(){
 
 
 module.exports = {
-    interactWithAccounts, rainContract, getPreviousCreatedAccounts, watchForAccountCreated
+  getPreviousCreatedAccounts, watchForAccountCreated
 }
