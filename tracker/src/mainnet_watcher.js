@@ -86,7 +86,3 @@ async function subscribe(){
         });
     });*/
 }
-
-module.exports = {
-    getZRXPastEvents, getBlocks, subscribe
-}
