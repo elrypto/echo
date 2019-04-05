@@ -6,7 +6,9 @@
     "@atlaskit/css-reset": "^3.0.6",
     "backbone": "^1.4.0",
     "bootstrap": "^4.3.1",
+    "express": "^4.16.4",
     "jquery": "^3.3.1",
+    "path": "^0.12.7",
     "react": "^16.6.3",
     "react-beautiful-dnd": "^10.1.0",
     "react-dom": "^16.6.3",
@@ -19,7 +21,8 @@
     "web3": "1.0.0-beta.37"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "local": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
