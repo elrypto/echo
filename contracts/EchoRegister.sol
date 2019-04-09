@@ -1,6 +1,39 @@
 pragma solidity ^0.5.0;
 
+contract EchoRegister {
+  mapping (address => uint) addressToState;
+  uint registeredCount = 0;
+  address[] addresses;
 
+  event indexRegistered(address _address);
+
+  modifier onlyOne() {
+    _;
+  }
+
+  function registerAddress() public onlyOne{
+    //make sure only one
+    registeredCount++;
+    addressToState[msg.sender] = 1;  // 1 is active
+    addresses.push(msg.sender);
+    emit indexRegistered(msg.sender);
+  }
+
+  function getRegisteredState() public view returns (uint){
+    return addressToState[msg.sender];
+  }
+
+  function getCount() public view returns (uint){
+    return registeredCount;
+  }
+
+  function getAllRegistered() public view returns (address[] memory){
+    return addresses;
+  }
+  
+}
+
+/*
 contract EchoRegister {
   mapping (address => string) registeredToIndexName;
   mapping (uint => address) registeredToAddress;
@@ -53,3 +86,4 @@ contract EchoRegister {
     return registeredToIndexName[_addr];
   }
 }
+*/

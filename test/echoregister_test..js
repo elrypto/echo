@@ -1,17 +1,35 @@
-const Echo = artifacts.require("./EchoRegister.sol");
+const EchoRegister = artifacts.require("./EchoRegister.sol");
 
-const testval = "myIndex";
+
 
 contract("EchoRegister", accounts => {
-  it("...should store the index name:" + testval, async () => {
-    const echoInstance = await Echo.deployed();
-    await echoInstance.createIndex(testval, { from: accounts[0] });
-    const storedData = await echoInstance.getIndexName.call();
-    assert.equal(storedData, testval, "The value:" + testval + " was not stored.");
+  it("...basic address registration:", async () => {
+    const echoInstance = await EchoRegister.deployed();
+    const tx = await echoInstance.registerAddress({from:accounts[0]});
+    const retval = await echoInstance.getRegisteredState({from:accounts[0]});
+    //console.log(tx);
+    assert.equal(retval, 1, "state for this registered address should be 1 (active)");
   });
+
+  it("...count should be 1, then 2:", async () => {
+    const echoInstance = await EchoRegister.deployed();
+    let count = await echoInstance.getCount();
+    assert.equal(count, 1, "should be 1 in the count");
+    const tx = await echoInstance.registerAddress({from:accounts[1]});
+    count = await echoInstance.getCount();
+    assert.equal(count, 2, "should be 2 in the count, after adding another");
+  });
+
+  it("...should return 2 in the address array:", async () => {
+    const echoInstance = await EchoRegister.deployed();
+    const addrs = await echoInstance.getAllRegistered();
+    assert.equal(addrs.length, 2, "should be 2 in the count, after adding another");
+  });
+
+
 });
 
-
+/*
 contract("EchoRegister", accounts => {
   it("...expect that will return accounts[0] for this:" + testval, async () => {
     const echoInstance = await Echo.deployed();
@@ -64,3 +82,5 @@ contract("EchoRegister", accounts => {
   });
 
 });
+
+*/
